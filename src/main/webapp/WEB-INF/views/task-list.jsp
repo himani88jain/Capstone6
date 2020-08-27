@@ -18,8 +18,14 @@
 	  <h1>My Tasks</h1>
 	  <table class="table">
 	  	<form action="/search-by-name">
-	  		<label>Search By Description:</label>
+	  		<label>Search By Description:&nbsp;</label>
 	  		<input type="text" name="description"/>
+	  		<button type="submit">Check</button>
+	  	</form>
+	  	&nbsp;&nbsp;&nbsp;&nbsp;
+	  	<form action="/search-by-completion">
+	  		<label>Search By Completion Status:&nbsp;</label>
+	  		<input text="text" name="complete_status" value="Complete/Incomplete"/>
 	  		<button type="submit">Check</button>
 	  	</form>
 			<thead>

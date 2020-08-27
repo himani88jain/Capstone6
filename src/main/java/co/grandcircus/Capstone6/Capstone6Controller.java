@@ -55,7 +55,7 @@ public String taskList(Model model) {
 	return "task-list";
 }
 
-@RequestMapping("search-by-name")
+@RequestMapping("/search-by-name")
 public String searchTaskByName(Model model,@RequestParam("description") String desc) {
 	User user=(User)session.getAttribute("user");
 	List<Task> tasks =taskRepo.findTaskByUserIdAndName(desc,user.getId());
@@ -63,7 +63,20 @@ public String searchTaskByName(Model model,@RequestParam("description") String d
 	return "task-list";
 }
 
-@RequestMapping("sortby-duedate")
+@RequestMapping("/search-by-completion")
+public String searchTaskByCompletionStatus(Model model,@RequestParam("complete_status") String comp) {
+	Boolean complete=true;
+	if(comp.equals("Complete"))
+		 complete=true;
+	if(comp.equals("Incomplete"))
+		 complete=false;
+	User user=(User)session.getAttribute("user");
+	List<Task> tasks =taskRepo.findByComplete(user.getId(),complete);
+	model.addAttribute("tasks",tasks);
+	return "task-list";
+}
+
+@RequestMapping("/sortby-duedate")
 public String sortByDueDate(Model model) {
 	User user=(User)session.getAttribute("user");
 	List<Task> tasks=taskRepo.findByUserIdAndOrderByDuedateDesc(user.getId());

@@ -18,5 +18,8 @@ public interface TaskRepo extends JpaRepository<Task,Long> {
 	
 	@Query("from Task where user_id=:userId order by duedate ")
 	List<Task> findByUserIdAndOrderByDuedateDesc(@Param("userId") Long userId);
+	
+	@Query("from Task where user_id=:userId and complete =:complete_status")
+	List<Task> findByComplete(@Param("userId") Long userId,@Param("complete_status") Boolean complete_status);
 
 	}
