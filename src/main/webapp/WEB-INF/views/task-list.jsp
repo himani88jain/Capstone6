@@ -6,11 +6,22 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+<link href="/style.css" rel="stylesheet" />
+
 </head>
 <body>
 	<div class="container">
 	  <h1>My Tasks</h1>
 	  <table class="table">
+	  	<form action="/search-by-name">
+	  		<label>Search By Description:</label>
+	  		<input type="text" name="description"/>
+	  		<button type="submit">Check</button>
+	  	</form>
 			<thead>
 				<tr>
 					<th>Delete</th>
@@ -32,6 +43,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<br><br><a href="/sortby-duedate">SortBy DueDate</a>
 	  <br><br><a href="/add-task">Add a Task</a><br><br>
 	  	<form action="/logout">
 		<button type="submit">Logout</button>

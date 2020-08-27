@@ -1,5 +1,6 @@
 package co.grandcircus.Capstone6;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -51,6 +52,22 @@ public String submitLoginForm(Model model,@RequestParam("email") String email,
 public String taskList(Model model) {
 	User user=(User)session.getAttribute("user");
 	model.addAttribute("tasks",taskRepo.findByUserId(user.getId()));
+	return "task-list";
+}
+
+@RequestMapping("search-by-name")
+public String searchTaskByName(Model model,@RequestParam("description") String desc) {
+	User user=(User)session.getAttribute("user");
+	List<Task> tasks =taskRepo.findTaskByUserIdAndName(desc,user.getId());
+	model.addAttribute("tasks",tasks);
+	return "task-list";
+}
+
+@RequestMapping("sortby-duedate")
+public String sortByDueDate(Model model) {
+	User user=(User)session.getAttribute("user");
+	List<Task> tasks=taskRepo.findByUserIdAndOrderByDuedateDesc(user.getId());
+	model.addAttribute("tasks",tasks);
 	return "task-list";
 }
 
